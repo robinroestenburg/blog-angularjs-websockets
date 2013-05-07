@@ -1,17 +1,22 @@
-var app    = require('express')(),
-    server = require('http').createServer(app),
+var express = require('express'),
+    app     = express(),
+    server  = require('http').createServer(app),
     io     = require('socket.io').listen(server);
 
 server.listen(1234);
 
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+app.configure(function() {
+  app.use(express.static(__dirname + '/app'));
 });
 
+io.set('log level', 1);
 io.sockets.on('connection', function (socket) {
 
-  function emitFibonacciNumber() {
-    setTimeout(function calculateFibonnaci(n_minus_1, n_minus_2) {
+  socket.emit('fibonacci', 0);
+  socket.emit('fibonacci', 1);
+
+  function emitFibonacciNumber(n_minus_1, n_minus_2) {
+    setTimeout(function calculateFibonnaci() {
       n = n_minus_1 + n_minus_2;
 
       socket.emit('fibonacci', n);
