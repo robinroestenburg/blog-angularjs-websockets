@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="AngularSockets">
+
+  <head>
+    <link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
+    <title>AngularJS and WebSockets Example</title>
+  </head>
+
+  <body>
+
+    <div class="container" ng-controller="FibonacciController">
+
+      <ul class="fibonacci unstyled">
+        <li ng-repeat="number in numbers">{{ number }}</li>
+      </ul>
+
+    </div>
+
+    <script src="components/angular/angular.js"></script>
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/socket.io-client/dist/socket.io.js"></script>
+
+    <script src="scripts/angular-sockets.js"></script>
+    <script src="scripts/controllers/fibonacci-controller.js"></script>
+  </body>
+</html>
